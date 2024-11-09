@@ -1,5 +1,5 @@
 <h1>{{title}}</h1>
-<button class="btn btn-primary">Show Employee</button>
+<button class="btn btn-primary" (click) = "getAllEmployee()">Show Employee</button>
 <table class="table" style="width: 900px;">
     <thead>
       <tr>
@@ -19,6 +19,10 @@
         <td>{{employee.mail}}</td>
         <td>{{employee.mobile}}</td>
         <td>
+          <button class="btn btn-info btn-sm" (click)="getEmployeeById(employee.id)">
+            <i class="bi bi-search"></i> View
+          </button> 
+          &nbsp;
             <button class="btn btn-primary btn-sm">
                 <i class="bi bi-pencil-square"></i> Edit
             </button>
@@ -30,3 +34,17 @@
       </tr>
     </tbody>
   </table>
+
+  <div *ngIf="employee">
+    <h2>Employee Data For</h2>
+    <table class="table" style="width: 900px;">
+      <thead>
+        <tr>
+          <th scope="col">Employee ID : </th><td>{{employee.id}}</td>
+          <th scope="col">Name : </th><td>{{employee.firstName}} &nbsp; {{employee.lastName}}</td>
+          <th scope="col">Mail ID : </th> <td>{{employee.mail}}</td>
+          <th scope="col">Mobile :</th> <td>{{employee.mobile}}</td>
+        </tr>
+      </thead>
+    </table>
+  </div>

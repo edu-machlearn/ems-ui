@@ -17,4 +17,8 @@ export class EmsService {
   getAllEmployee(): Observable<Employee[]>{
     return this.http.get<Employee[]>(this.baseUrl+"emp/empAll");
   }
+
+  getEmployeeById(id:number):Observable<Employee>{
+    return this.http.get<Employee>(this.baseUrl+`emp/empById/${id}`);
+  }
 }

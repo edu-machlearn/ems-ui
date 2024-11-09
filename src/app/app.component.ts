@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title=null;
   employees: Employee[] = [];
+  employee:any;
   constructor(private emsService: EmsService){}
   ngOnInit(){
     this.emsService.printWelcome().subscribe(
@@ -22,7 +23,7 @@ export class AppComponent {
         this.title = data.message;
       }
     );
-    this.getAllEmployee();
+    //this.getAllEmployee();
   }
   getAllEmployee():void{
     console.log("Call getAllEmployee()");
@@ -33,6 +34,15 @@ export class AppComponent {
       },
       (error) =>{
         console.log("Error ",error)
+      }
+    );
+  }
+
+  getEmployeeById(id:number){
+    console.log("Call getEmployeeById() -",id);
+    this.emsService.getEmployeeById(id).subscribe(
+      (data:Employee) =>{
+        this.employee = data;
       }
     );
   }
