@@ -1,1 +1,32 @@
-<h1>This is My EMS UI</h1>
+<h1>{{title}}</h1>
+<button class="btn btn-primary">Show Employee</button>
+<table class="table" style="width: 900px;">
+    <thead>
+      <tr>
+        <th scope="col">SL No.</th>
+        <th scope="col">Employee ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Mail ID</th>
+        <th scope="col">Mobile</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees; index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{employee.id}}</td>
+        <td>{{employee.firstName}} &nbsp; {{employee.lastName}}</td>
+        <td>{{employee.mail}}</td>
+        <td>{{employee.mobile}}</td>
+        <td>
+            <button class="btn btn-primary btn-sm">
+                <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            &nbsp;
+            <button class="btn btn-danger btn-sm">
+                <i class="bi bi-trash"></i> Delete
+            </button> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
