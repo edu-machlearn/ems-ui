@@ -21,4 +21,8 @@ export class EmsService {
   getEmployeeById(id:number):Observable<Employee>{
     return this.http.get<Employee>(this.baseUrl+`emp/empById/${id}`);
   }
+
+  saveEmployee(emp:any):Observable<any>{
+    return this.http.post<any>(this.baseUrl+"emp/save",emp);
+  }
 }
