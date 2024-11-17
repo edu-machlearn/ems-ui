@@ -54,6 +54,15 @@ export class AppComponent {
       }
     );
   }
+  deleteEmp(id:number){
+    this.emsService.deleteEmp(id).subscribe(
+      (res:any)=>{
+        console.log(res);
+        alert(res.status);
+        this.getAllEmployee();
+      }
+    );
+  }
   toggleDiv(){
     this.showForm = !this.showForm;
   }
@@ -64,6 +73,13 @@ export class AppComponent {
       (res:any) =>{
         console.log("Response > ",res);
         alert("Data Insert Success!");
+        this.model = {
+          firstName: '',
+          lastName: '',
+          mail: '',
+          mobile: ''
+        }; // Clear the JSON data
+        this.getAllEmployee();
       }
     );
   }

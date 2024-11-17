@@ -25,4 +25,8 @@ export class EmsService {
   saveEmployee(emp:any):Observable<any>{
     return this.http.post<any>(this.baseUrl+"emp/save",emp);
   }
+
+  deleteEmp(id:number):any{
+    return this.http.delete<any>(this.baseUrl+`emp/deleteById/${id}`);
+  }
 }
