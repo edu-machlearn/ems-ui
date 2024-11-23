@@ -4,7 +4,7 @@
 &nbsp;
 
 <div *ngIf="showForm">
-  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <form #myForm="ngForm">
     <div>
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" name="firstName" [(ngModel)]="model.firstName" required>
@@ -25,7 +25,9 @@
       <input type="text" id="mobile" name="mobile" [(ngModel)]="model.mobile" required>
     </div>
   
-    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+    <button *ngIf="btnFlag==='add'" type="submit" [disabled]="!myForm.valid" class="btn btn-primary" (click)="onSubmit(myForm)">
+      Submit</button>
+    <button *ngIf="btnFlag==='edit'" type="submit" [disabled]="!myForm.valid" class="btn btn-info" (click)="updateEmpData(myForm)">Update</button>
   </form>
   
 </div>
@@ -36,7 +38,7 @@
 
 
 <button class="btn btn-primary" (click) = "getAllEmployee()">Show Employee</button>
-<table class="table" style="width: 900px;">
+<table class="table">
     <thead>
       <tr>
         <th scope="col">SL No.</th>
@@ -59,7 +61,7 @@
             <i class="bi bi-search"></i> View
           </button> 
           &nbsp;
-            <button class="btn btn-primary btn-sm">
+            <button class="btn btn-primary btn-sm" (click)="editEmp(employee.id)">
                 <i class="bi bi-pencil-square"></i> Edit
             </button>
             &nbsp;

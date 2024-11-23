@@ -17,7 +17,10 @@ export class AppComponent {
   employees: Employee[] = [];
   employee:any;
   showForm:boolean = false;
+  action:any;
+  btnFlag:any;
   model = {
+    id:0,
     firstName: '',
     lastName: '',
     mail: '',
@@ -65,6 +68,7 @@ export class AppComponent {
   }
   toggleDiv(){
     this.showForm = !this.showForm;
+    this.btnFlag = "add";
   }
   onSubmit(form: any){
     console.log('Form Data: ', form.value);
@@ -74,12 +78,44 @@ export class AppComponent {
         console.log("Response > ",res);
         alert("Data Insert Success!");
         this.model = {
+          id:0,
           firstName: '',
           lastName: '',
           mail: '',
           mobile: ''
         }; // Clear the JSON data
         this.getAllEmployee();
+      }
+    );
+  }
+  updateEmpData(form: any){
+    console.log('Form Data: ', form.value);
+    console.log("JSON Data :",this.model);
+    this.emsService.editEmployee(this.model).subscribe(
+      (res:any) =>{
+        console.log("Response > ",res);
+        alert("Data Updated Success!");
+        this.model = {
+          id:0,
+          firstName: '',
+          lastName: '',
+          mail: '',
+          mobile: ''
+        }; // Clear the JSON data
+        this.getAllEmployee();
+      }
+    );
+  }
+  editEmp(id:number){
+    this.btnFlag = "edit";
+    this.emsService.getEmployeeById(id).subscribe(
+      (data:Employee) =>{
+        //this.employee = data;
+        this.model.id = id;
+        this.model.firstName = data.firstName;
+        this.model.lastName = data.lastName;
+        this.model.mail = data.mail;
+        this.model.mobile = data.mobile;
       }
     );
   }
